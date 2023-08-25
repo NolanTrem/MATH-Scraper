@@ -43,7 +43,6 @@ def get_math_problems(level: str = None) -> List[dict]:
 
                     if level is None or problem_details.get("level") == level:
                         new_problem = {
-                            "id": os.path.splitext(file_name)[0],
                             "problem": problem_details.get("problem"),
                             "level": problem_details.get("level"),
                             "type": problem_details.get("type"),
@@ -66,7 +65,7 @@ def save_to_csv(problems: List[dict], output_file: str = "problems.csv"):
     """Save the problems list into a CSV file."""
     with open(output_file, "w", newline="", encoding="utf-8") as file:
         writer = csv.DictWriter(
-            file, fieldnames=["id", "problem", "level", "type", "solution"]
+            file, fieldnames=["problem", "level", "type", "solution"]
         )
         writer.writeheader()
         for problem in problems:
